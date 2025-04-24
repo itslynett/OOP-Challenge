@@ -3,13 +3,24 @@ const pet = {
   hunger: 5,
   energy: 5,
   happiness: 5,
-  tricks: []
+  tricks: ["sit", "stay", "fetch", "roll over", "shake", "play dead"]
 };
 
 function updateStatus() {
   document.getElementById("hunger").textContent = pet.hunger;
   document.getElementById("energy").textContent = pet.energy;
   document.getElementById("happiness").textContent = pet.happiness;
+}
+
+function updateTricks() {
+  const trickList = document.getElementById("trickList");
+  trickList.innerHTML = ""; // Clear existing list
+
+  pet.tricks.forEach(trick => {
+    const li = document.createElement("li");
+    li.textContent = trick;
+    trickList.appendChild(li);
+  });
 }
 
 function eat() {
@@ -42,15 +53,14 @@ function train() {
   const trick = trickInput.value.trim();
 
   if (trick !== "") {
-    pet.tricks.push(trick);
-
-    const trickList = document.getElementById("trickList");
-    const li = document.createElement("li");
-    li.textContent = trick;
-    trickList.appendChild(li);
-
+    if (!pet.tricks.includes(trick)) {
+      pet.tricks.push(trick);
+      updateTricks();
+      alert(`${pet.name} learned "${trick}"!`);
+    } else {
+      alert(`${pet.name} already knows "${trick}".`);
+    }
     trickInput.value = "";
-    alert(`${pet.name} learned "${trick}"!`);
   } else {
     alert("Please enter a trick.");
   }
@@ -62,5 +72,6 @@ document.getElementById("sleepBtn").addEventListener("click", sleep);
 document.getElementById("playBtn").addEventListener("click", play);
 document.getElementById("trainBtn").addEventListener("click", train);
 
-// Initial display
+// Initialize display
 updateStatus();
+updateTricks();
