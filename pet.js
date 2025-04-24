@@ -1,4 +1,4 @@
-let pet = {
+const pet = {
   name: "Fluffy",
   hunger: 5,
   energy: 5,
@@ -38,16 +38,29 @@ function play() {
 }
 
 function train() {
-  let trick = document.getElementById("trickInput").value;
-  if (trick) {
+  const trickInput = document.getElementById("trickInput");
+  const trick = trickInput.value.trim();
+
+  if (trick !== "") {
     pet.tricks.push(trick);
+
     const trickList = document.getElementById("trickList");
     const li = document.createElement("li");
     li.textContent = trick;
     trickList.appendChild(li);
-    document.getElementById("trickInput").value = '';
-    alert(`${pet.name} learned a new trick: ${trick}!`);
+
+    trickInput.value = "";
+    alert(`${pet.name} learned "${trick}"!`);
+  } else {
+    alert("Please enter a trick.");
   }
 }
 
+// Attach event listeners
+document.getElementById("eatBtn").addEventListener("click", eat);
+document.getElementById("sleepBtn").addEventListener("click", sleep);
+document.getElementById("playBtn").addEventListener("click", play);
+document.getElementById("trainBtn").addEventListener("click", train);
+
+// Initial display
 updateStatus();
