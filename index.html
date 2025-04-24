@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Virtual Pet - Fluffy</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🐶 Meet Fluffy</h1>
+
+    <div class="status">
+      <p><strong>Hunger:</strong> <span id="hunger">5</span>/10</p>
+      <p><strong>Energy:</strong> <span id="energy">5</span>/10</p>
+      <p><strong>Happiness:</strong> <span id="happiness">5</span>/10</p>
+    </div>
+
+    <div class="actions">
+      <button onclick="eat()">🍖 Eat</button>
+      <button onclick="sleep()">😴 Sleep</button>
+      <button onclick="play()">🎾 Play</button>
+      <input type="text" id="trickInput" placeholder="Enter a trick">
+      <button onclick="train()">🐾 Train</button>
+    </div>
+
+    <div class="tricks">
+      <h3>Known Tricks:</h3>
+      <ul id="trickList"></ul>
+    </div>
+  </div>
+
+  <script src="pet.js"></script>
+</body>
+</html>
